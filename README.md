@@ -45,6 +45,128 @@ Total conversion tools currently available in the UI: **22**
 1. Use e and d to RSA (encrypt form)
 2. Use e and d to Msg (decrypt form)
 
+## Conversion Mathematics (How Each Conversion Works)
+
+This section explains the method, core formula, and mathematics used for every conversion in A/B/C.
+
+### A) Number and Text Conversions (14)
+
+1. Decimal to Binary
+- Method: positional base conversion from base-10 to base-2.
+- Formula: For decimal $N$, binary digits come from repeated division by 2.
+- Math used: number theory, positional numeral systems.
+
+2. Decimal to Hexadecimal
+- Method: base-10 to base-16 conversion.
+- Formula: repeated division by 16; remainder digits map to $0-9, A-F$.
+- Math used: modular arithmetic and positional representation.
+
+3. Decimal to Octal
+- Method: base-10 to base-8 conversion.
+- Formula: repeated division by 8, collect remainders.
+- Math used: positional numeral systems.
+
+4. Binary to Decimal
+- Method: weighted sum of bits.
+- Formula: $N = \sum_{i=0}^{k-1} b_i 2^i$.
+- Math used: powers/exponents, polynomial expansion in base 2.
+
+5. Hexadecimal to Decimal
+- Method: weighted sum of hexadecimal digits.
+- Formula: $N = \sum_{i=0}^{k-1} h_i 16^i$, where $h_i \in [0,15]$.
+- Math used: base-16 positional arithmetic.
+
+6. Octal to Decimal
+- Method: weighted sum of octal digits.
+- Formula: $N = \sum_{i=0}^{k-1} o_i 8^i$.
+- Math used: base-8 positional arithmetic.
+
+7. Symbol / Word to Decimal
+- Method: each character maps to its code point using `ord()`.
+- Formula: for each character $c$, code value is $v = \text{ord}(c)$.
+- Math used: character encoding mapping (ASCII/Unicode integer mapping).
+
+8. Decimal to Text
+- Method: parse each token as decimal integer and map with `chr()` when in ASCII range.
+- Formula: $c = \text{chr}(n)$ for valid $0 \le n \le 127$; otherwise output placeholder.
+- Math used: integer-to-symbol mapping under ASCII constraints.
+
+9. Hexadecimal to Text
+- Method: convert each hex token to integer base-10, then to character.
+- Formula: $n = \text{int}(h,16)$, then $c = \text{chr}(n)$ for $0 \le n \le 127$.
+- Math used: base conversion + ASCII mapping.
+
+10. Octal to Text
+- Method: convert each octal token to decimal, then to character.
+- Formula: $n = \text{int}(o,8)$, then $c = \text{chr}(n)$ for $0 \le n \le 127$.
+- Math used: base conversion + ASCII mapping.
+
+11. Binary to Text
+- Method: convert each binary token to decimal, then to character.
+- Formula: $n = \text{int}(b,2)$, then $c = \text{chr}(n)$ for $0 \le n \le 127$.
+- Math used: base conversion + ASCII mapping.
+
+12. Text to Hexadecimal
+- Method: convert each character code to base-16.
+- Formula: $h = \text{HEX}(\text{ord}(c))$ for each character.
+- Math used: character encoding + base conversion.
+
+13. Text to Octal
+- Method: convert each character code to base-8.
+- Formula: $o = \text{OCT}(\text{ord}(c))$ for each character.
+- Math used: character encoding + base conversion.
+
+14. Text to Binary
+- Method: convert each character code to base-2.
+- Formula: $b = \text{BIN}(\text{ord}(c))$ for each character.
+- Math used: character encoding + base conversion.
+
+### B) Base Encoding Conversions (6)
+
+1. Base64 to PlainText
+- Method: Base64 decode to bytes, then UTF-8 decode to string.
+- Formula idea: each 4 Base64 chars represent 24 bits, producing 3 bytes.
+- Math used: radix-64 bit grouping, binary packing/unpacking.
+
+2. PlainText to Base64
+- Method: UTF-8 bytes -> Base64 encoding.
+- Formula idea: each 3 bytes (24 bits) are split into four 6-bit groups.
+- Math used: bitwise grouping with alphabet of size 64.
+
+3. Base32 to PlainText
+- Method: Base32 decode to bytes, then UTF-8 decode.
+- Formula idea: 8 Base32 chars represent 40 bits, producing 5 bytes.
+- Math used: radix-32 encoding, 5-bit symbol grouping.
+
+4. PlainText to Base32
+- Method: UTF-8 bytes -> Base32 encoding.
+- Formula idea: bytes are split into 5-bit groups and mapped to Base32 alphabet.
+- Math used: bit-level regrouping and padding.
+
+5. Base128 to PlainText
+- Method in this project: uses Base85 decode (`base64.b85decode`) as practical substitute.
+- Formula idea: 5 Base85 chars represent a 32-bit block (4 bytes).
+- Math used: mixed-radix block conversion with alphabet size 85.
+
+6. PlainText to Base128
+- Method in this project: uses Base85 encode (`base64.b85encode`).
+- Formula idea: convert 4-byte blocks into 5 printable symbols.
+- Math used: block-wise integer transformation in base 85.
+
+### C) RSA Tools (2)
+
+1. Use e and d to RSA (encrypt form)
+- Method: modular exponentiation.
+- Formula: $C = M^e \bmod N$.
+- Math used: modular arithmetic, fast exponentiation, public-key cryptography.
+- Constraint used in app: $0 \le M < N$ and $e, N > 0$.
+
+2. Use e and d to Msg (decrypt form)
+- Method: modular exponentiation.
+- Formula: $M = C^d \bmod N$.
+- Math used: modular arithmetic and RSA inverse operation over modulus $N$.
+- Constraint used in app: $0 \le C < N$ and $d, N > 0$.
+
 ## User Flow (End-to-End)
 
 1. Run app using `python run.py` or `start.bat`.
