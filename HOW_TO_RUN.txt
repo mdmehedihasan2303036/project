@@ -1,0 +1,76 @@
+╔════════════════════════════════════════════════════════════╗
+║                                                            ║
+║              🔐 CryptInfoBD Desktop Application 🔐         ║
+║                  Number System Converter                   ║
+║                                                            ║
+╚════════════════════════════════════════════════════════════╝
+
+┌────────────────────────────────────────────────────────────┐
+│  TO RUN THE APPLICATION:                                   │
+└────────────────────────────────────────────────────────────┘
+
+  Option 1: Python Command
+  ─────────────────────────
+  python run.py
+
+
+  Option 2: Windows Batch File
+  ─────────────────────────────
+  Double-click: start.bat
+
+
+  Option 3: Full Path Command
+  ────────────────────────────
+  cd "c:\Users\Mehedi\OneDrive\Desktop\versity Project\CryptInfoBD\project"
+  python run.py
+
+
+┌────────────────────────────────────────────────────────────┐
+│  REQUIREMENTS:                                             │
+└────────────────────────────────────────────────────────────┘
+
+  ✓ Python 3.10 or higher
+  ✓ PyQt6 (install with: pip install -r requirements.txt)
+
+
+┌────────────────────────────────────────────────────────────┐
+│  FEATURES:                                                 │
+└────────────────────────────────────────────────────────────┘
+
+  ✓ Decimal ↔ Binary
+  ✓ Decimal ↔ Hexadecimal
+  ✓ Decimal ↔ Octal
+  ✓ Symbol/Word → Decimal (ASCII/Unicode)
+
+
+┌────────────────────────────────────────────────────────────┐
+│  TESTING:                                                  │
+└────────────────────────────────────────────────────────────┘
+
+  To test backend only:
+  python test_backend.py
+
+
+┌────────────────────────────────────────────────────────────┐
+│  DOCUMENTATION:                                            │
+└────────────────────────────────────────────────────────────┘
+
+  • README.md          - Full documentation
+  • QUICKSTART.md      - Quick start guide
+  • PROJECT_OVERVIEW.md - Technical overview
+  • SUCCESS.md         - Project completion summary
+
+
+┌────────────────────────────────────────────────────────────┐
+│  PROJECT STATUS: ✅ COMPLETE                               │
+└────────────────────────────────────────────────────────────┘
+
+  All requirements met!
+  All tests passing!
+  Ready for production use!
+
+
+═══════════════════════════════════════════════════════════════
+              Built by Senior Full-Stack Engineer
+                      Version 1.0.0
+═══════════════════════════════════════════════════════════════
